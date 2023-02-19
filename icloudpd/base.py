@@ -365,18 +365,6 @@ def main(
 
     def download_photo(counter, photo):
         """internal function for actually downloading the photos"""
-        if hasattr(photo, 'item_type'):
-            if skip_videos and photo.item_type != "image":
-                logger.set_tqdm_description(
-                    "Skipping %s, only downloading photos." % photo.filename
-                )
-                return
-            if photo.item_type != "image" and photo.item_type != "movie":
-                logger.set_tqdm_description(
-                    "Skipping %s, only downloading photos and videos. "
-                    "(Item type was: %s)" % (photo.filename, photo.item_type)
-                )
-                return
         try:
             created_date = photo.created.astimezone(get_localzone())
         except (ValueError, OSError):
